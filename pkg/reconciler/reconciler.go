@@ -114,10 +114,10 @@ func (r *Reconciler) ReconcileBuilders(ctx context.Context, owner client.Object,
 				return nil, err
 			}
 
-			logger.Info("reconcile check before", before)
-			logger.Info("reconcile check after", res.current)
+			logger.Info("reconcile check before", "object", before)
+			logger.Info("reconcile check after", "object", res.current)
 			isEq := equality.Semantic.DeepEqual(before, res.current)
-			logger.Info("reconcile check is Eq", isEq)
+			logger.Info("reconcile check isEq", "equal", isEq)
 
 			if !isEq {
 				err = r.Client.Update(ctx, res.current)
